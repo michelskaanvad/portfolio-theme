@@ -1,0 +1,795 @@
+/*
+Theme Name: Portfolio Theme
+Author: Michel Skånvad
+Description: A custom WordPress theme built to showcase my personal portfolio, projects, and CV.
+Version: 1.0
+*/
+
+/* Reset Defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Serif", sans-serif;
+  color: #f4f4f4;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #e6dede;  
+
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    padding: 0 40px;
+    z-index: 10;
+}
+
+/* Hamburger Menu Icon */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 158px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    padding-left: 3rem;
+}
+
+.social-icons img {
+    width: 33px;
+}
+
+/* Hero Section (video Background) */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+    
+/* Fullscreen Background Video */
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+
+}
+
+/*Recent work*/
+.recent-work {
+  background-color: #e6dede;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 120px;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.recent-work-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* LEFT align */
+  text-align: left;
+}
+
+.recent-work h2 {
+  font-size: 90px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: #fff;
+  word-spacing: 2px;
+}
+
+.recent-work p {
+  font-size: 40px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+  color: #fff;
+  word-spacing: 2px;
+}
+
+.explore-btn {
+  font-size: 24px;
+  padding: 16px 32px;
+  border: 4px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.explore-btn:hover {
+  background-color: #fff;
+  color: #e6dede;
+  cursor: pointer;
+}
+
+
+/* About Me Section */
+.about-me {
+  height: 100vh; /* Consider using min-height if content might exceed viewport */
+  width: 100%;
+  display: flex;
+  position: relative;
+  background-color: #e6dede; /* This is the background for the text side */
+  /* color: #fff; */ /* Removed from here, will apply directly to text container */
+  font-family: 'Cormorant Garamond', serif; /* Set default font for the section */
+}
+
+.image-container {
+  position: relative;
+  width: 50%; /* Takes left 50% */
+  height: 100vh; /* Match parent height */
+  overflow: hidden;
+}
+
+.image-container img {
+  display: block; /* Prevents bottom space */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Covers the container, might crop */
+}
+
+.image-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; /* Gradient still covers the whole image container */
+  background: linear-gradient(to right,
+              rgba(230, 222, 222, 0) 40%,  /* Start fading at 40% of the image width */
+              rgba(230, 222, 222, 1) 90%  /* Be fully opaque at 90% of the image width */
+             );
+}
+
+.about-text {
+  width: 50%; /* Takes right 50% */
+  padding: 100px 80px; /* Adjust padding as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* CHANGE THIS LINE: */
+  align-items: flex-end; /* Aligns flex items (h2, p, button) to the right */
+  color: #fff; /* Set text color for this section */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.about-text h2 {
+  font-size: 70px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  word-spacing: 2px;
+  line-height: 1.1;
+  /* ADD THIS LINE: */
+  text-align: right; /* Aligns the text inside the heading to the right */
+  /* ADD THIS LINE: */
+  width: 100%; /* Ensures the heading takes full width to respect text-align */
+}
+
+.about-text p {
+  font-size: 26px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  word-spacing: 2px;
+  /* ADD THIS LINE: */
+  text-align: right; /* Aligns the text inside the paragraph to the right */
+  /* ADD THIS LINE: */
+  width: 100%; /* Ensures the paragraph takes full width to respect text-align */
+}
+
+.explore-btn {
+  font-size: 18px; /* Adjusted font size */
+  padding: 12px 28px; /* Adjusted padding */
+  border: 2px solid #fff; /* Slightly thinner border */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px; /* Keep rounded */
+  transition: background-color 0.3s, color 0.3s; /* Smoother transition */
+  cursor: pointer;
+  text-transform: uppercase; /* Match button text style */
+  letter-spacing: 1px; /* Add slight letter spacing */
+  /* font-family inherit is fine */
+}
+
+.explore-btn:hover {
+  background-color: #fff; /* Optional hover effect */
+  color: #e6dede;
+}
+
+
+/* About Video Section */
+.about-video {
+  text-align: center;
+  background-color: #e6dede;
+  color: #000; /* Adjust for contrast */
+  padding: 100px 40px;
+}
+
+.about-video h2 {
+  font-size: 90px;
+  margin-bottom: 2px;
+  color: #fff;
+  font-family: cormorant Garamond;
+  word-spacing: 2px;
+}
+
+.about-video h3 {
+  font-size: 22px;
+  font-weight: 150;
+  margin-bottom: 60px;
+  color: #fff;
+  font-family: cormorant Garamond;
+  font-style: italic;
+  word-spacing: 2px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+}
+
+/* H1 Styling */
+.recent-work-hero-h1 h1{
+  font-size: 64px;
+  font-weight: 700;
+  font-family: cormorant Garamond;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+  word-spacing: 5px;
+  padding-top: 100px; /* space for the nav */
+}
+
+/* Buttons Wrapper */
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px; /* Push below the h1 */
+  flex-wrap: wrap; /* In case of smaller screens */
+  margin-bottom: 60px;
+}
+
+.button-group a {
+  font-size: 18px;
+  padding: 12px 28px;
+  border: 2px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: inherit;
+  background-color: transparent;
+}
+
+.button-group a:hover {
+  background-color: #fff;
+  color: #e6dede;
+}
+
+.button-group .active {
+  background-color: #fff;
+  color: #e6dede;
+}
+
+/* Photos Styled*/
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+  gap: 15px;
+  padding: 2rem 15px;
+}
+
+.content img {
+  width: 100%;
+  height: auto; /* Keeps original photo dimensions */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.content img:hover {
+  transform: scale(1.03);
+}
+
+/* Contact Section */
+.contact {
+  height: 100vh;
+  background-color: #e6dede;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Cormorant Garamond;
+  padding: 0 120px;
+  text-align: center;
+}
+
+.contact-content {
+  max-width: 800px;
+}
+
+.contact h2 {
+  font-size: 90px;
+  color: #fff;
+  margin-bottom: 32px;
+}
+
+.contact p {
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.email-link {
+  font-size: 24px;
+  color: #fff;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.email-link:hover {
+  color: #d2c9c9;
+}
+
+.cv-section {
+  background-color: #e6dede;
+  /* Set min-height instead of height to allow content overflow if needed */
+  min-height: 100vh;
+  /* Use flexbox to center the direct child (.cv-wrapper) */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  font-family: "Cormorant Garamond", serif;
+  padding: 20px; /* Add padding to prevent content touching edges on small screens */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  margin-bottom: 50px;
+}
+
+.cv-wrapper {
+  /* Make the wrapper a flex container */
+  display: flex;
+  /* Stack items vertically */
+  flex-direction: column;
+  /* Center items horizontally within the wrapper */
+  align-items: center;
+  /* Remove text-align as flexbox handles alignment of flex items */
+  /* text-align: center; */
+  max-width: 1000px;
+  width: 100%; /* Ensure it takes available width up to max-width */
+}
+
+.cv-section h2 {
+  font-size: 90px;
+  color: #fff;
+  /* Increase this value to add more space below the heading */
+  margin-bottom: 50px; /* Or any value larger than 32px */
+  font-weight: 600;
+  word-spacing: 2px;
+  text-align: center;
+}
+
+/* The .cv-image rule remains the same */
+.cv-image {
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 32px; /* Keep or adjust this as needed for space below the image */
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.explore-btn {
+  font-size: 20px;
+  padding: 16px 32px;
+  border: 4px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Ensure the button is treated as a flex item and respects alignment */
+  display: inline-block; /* or block, depending on desired behavior */
+}
+
+.explore-btn:hover {
+  background-color: #fff;
+  color: #e6dede;
+}
+
+
+
+/* Footer */
+.site-footer {
+  background-color: #fff;
+  color: #e6dede;
+  padding: 40px 20px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.footer-links a {
+  color: #e6dede;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #bfbaba;
+}
+
+.footer-logo {
+  flex: 1;
+  font-size: 18px;
+  margin: 0;
+  text-align: center;
+  color: #e6dede;
+}
+.social-icons i {
+  font-size: 1.4rem;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+.footer-socials {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.footer-socials i {
+  font-size: 2rem;
+  color: #e6dede;
+  transition: color 0.3s ease;
+}
+
+.footer-socials img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(91%) sepia(8%) saturate(152%) hue-rotate(319deg) brightness(91%) contrast(93%);
+  transition: opacity 0.3s ease;
+}
+
+.footer-socials a:hover img {
+  opacity: 0.7;
+}
+
+/* ========== MOBILE STYLING ========== */
+@media (max-width: 768px) {
+  /* General layout fixes */
+  body {
+    overflow-x: hidden;
+  }
+
+  header {
+    display: none;
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 16px;
+    display: none !important;
+  }
+
+  .social-icons {
+    margin-top: 20px;
+  }
+
+  /* ======= recent work SECTION ======= */
+  .recent-work-content{
+    align-items: center;
+  }
+
+  .recent-work-content h2 {
+    font-size: 36px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .recent-work-content p {
+    font-size: 23px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  /* ======= ABOUT ME SECTION ======= */
+  .about-video h2 {
+    font-size: 3rem;
+    
+}
+  .about-me {
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .image-container img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  .image-gradient {
+    display: none;
+  }
+
+  .about-text {
+    z-index: 1;
+    align-items: center;
+    color: #fff;
+    padding: 2rem 15px;
+    width: 100%
+  }
+
+  .about-text h2 {
+    font-size: 36px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .explore-btn {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  /* ======= RECENT WORK MOBILE VERSION ======= */
+  .recent-work {
+    padding: 2rem 15px;
+    text-align: center;
+    background-color: #e6dede;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .mobile-intro h2 {
+    font-size: 28px;
+    margin-bottom: 2rem;
+  }
+
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-buttons a {
+    font-size: 18px;
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 30px;
+    text-decoration: none;
+    color: black;
+    background: transparent;
+    transition: 0.3s;
+  }
+
+  .mobile-buttons a:hover {
+    background-color: black;
+    color: white;
+  }
+
+  .mobile-section {
+    display: none;
+    margin-top: 2rem;
+  }
+
+  .mobile-section:target {
+    display: block;
+  }
+
+  #photo:target ~ #intro,
+  #video:target ~ #intro,
+  #design:target ~ #intro {
+    display: none;
+  }
+
+  .back-btn {
+    display: block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+
+  /* ======= content recent work ======= */
+  .recent-work-hero-h1 h1{
+    font-size: 36px;
+  }
+
+  .button-group{
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 20px;
+  }
+
+  /* ======= contact section ======= */
+  .contact {
+    /* Reduce horizontal padding significantly for mobile */
+    padding: 20px; /* Example: Add some padding on all sides */
+    /* min-height: 100vh is usually fine, but can use auto if content is very tall */
+    /* min-height: auto; */
+  }
+
+  .contact-content {
+    /* max-width: 800px is okay, but ensure it takes full width */
+    max-width: 100%; /* Ensures it doesn't exceed the mobile screen width minus padding */
+  }
+
+  .contact h2 {
+    /* Reduce heading font size for mobile */
+    font-size: 48px; /* Adjusted size */
+    margin-bottom: 20px; /* Reduce space below heading */
+  }
+
+  .contact p {
+    /* Reduce paragraph font size for mobile */
+    font-size: 24px; /* Adjusted size */
+    margin-bottom: 15px; /* Reduce space below paragraph */
+  }
+
+  .email-link {
+    /* Reduce email link font size for mobile */
+    font-size: 18px; /* Adjusted size */
+  }
+
+  /* Adjust CV Section */
+  .cv-section {
+    /* Keep padding or adjust slightly if needed */
+    padding: 15px; /* Slightly less padding example */
+    /* min-height: 100vh is usually fine */
+  }
+
+  .cv-wrapper {
+    /* Remove max-width to let it fill the available width on mobile */
+    max-width: none;
+    width: 100%; /* Ensure it takes full available width */
+    /* Remove min-height or set to auto if content determines height */
+    /* min-height: auto; */
+  }
+
+  .cv-section h2 {
+    /* Reduce heading font size for mobile */
+    font-size: 48px; /* Adjusted size (can match contact h2) */
+    margin-bottom: 30px; /* Adjust space below heading */
+  }
+
+  .cv-image {
+    /* Adjust image size for mobile using percentage relative to wrapper */
+    max-width: 90%; /* Example: Image takes 90% of wrapper width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Reduce space below image */
+  }
+
+  .explore-btn {
+    /* Reduce button padding and font size for mobile */
+    padding: 12px 20px; /* Smaller padding */
+    font-size: 16px; /* Smaller font size */
+    border-width: 2px; /* Adjust border width */
+    border-radius: 20px; /* Adjust border-radius if needed */
+    margin-top: 15px; /* Adjust space above button */
+  }
+
+
+
+  /* ======= FOOTER ======= */
+  .site-footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    order: 3;
+  }
+
+  .footer-socials {
+    order: 2;
+  }
+}
+
