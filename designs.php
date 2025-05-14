@@ -14,7 +14,7 @@ $designs_image_two = get_field('designs_image_two');
 $designs_image_three = get_field('designs_image_three');
 
 ?>
-
+  <?php if (have_posts()): while (have_posts()): the_post(); ?>
      <div class="recent-work-hero-h1">
       <h1><?php echo esc_html($designs_h1) ?></h1>
     </div> 
@@ -26,13 +26,27 @@ $designs_image_three = get_field('designs_image_three');
   </div>
 
   <section class="content">
-    <!-- 🧠 Replace with your own designs later -->
-    <img src="<?php echo esc_url($designs_image_one["url"]) ?>" alt="">
-    <img src="<?php echo esc_url($designs_image_two["url"]) ?>" alt="">
-    <img src="<?php echo esc_url($designs_image_three["url"]) ?>" alt="">
+    <?php
+    $args = array(
+      'post_type' => 'designs', // Use your CPT slug here
+      'posts_per_page' => -1
+    );
+
+    $loop = new WP_Query($args);
+    if ($loop->have_posts()):
+      while ($loop->have_posts()): $loop->the_post();
+        $designs_img = get_field('designs_img'); // use your ACF field name
+    ?>
+      <?php if ($designs_img): ?>
+        <img src="<?php echo esc_url($designs_img['url']); ?>" alt="">
+      <?php endif; ?>
+    <?php endwhile; wp_reset_postdata(); ?>
+    <?php else: ?>
+      <p>No recent images yet.</p>
+    <?php endif; ?>
   </section>
 
-  <?php
-  get_footer();
-  ?>
+<?php endwhile; endif; ?>
+
+<?php get_footer(); ?>
   

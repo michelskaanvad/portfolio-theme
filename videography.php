@@ -15,7 +15,7 @@ $video_youtube_three = get_field('video_youtube_three');
 
 ?>
 
-
+<?php if (have_posts()): while (have_posts()): the_post(); ?>
      <div class="recent-work-hero-h1">
       <h1><?php echo esc_html($video_h1) ?></h1>
     </div> 
@@ -25,27 +25,33 @@ $video_youtube_three = get_field('video_youtube_three');
     <a href="<?php echo esc_url($video_design_btn)?>"><?php echo esc_html($video_design_btn_p)?></a>
     <a href="<?php echo esc_url($video_video_btn)?>"><?php echo esc_html($video_video_btn_p)?></a>
   </div>
-
   <section class="content">
-    <iframe width="100%" height="400" src="<?php echo esc_url($video_youtube_one) ?>" 
-      title="YouTube video player" frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      allowfullscreen>
-    </iframe>
-  
-    <iframe width="100%" height="400" src="<?php echo esc_url($video_youtube_two) ?>" 
-      title="YouTube video player" frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      allowfullscreen>
-    </iframe>
+    <?php
+    $args = array(
+      'post_type' => 'videography', // Use your CPT slug here
+      'posts_per_page' => -1
+    );
 
-    <iframe width="100%" height="400" src="<?php echo esc_url($video_youtube_three) ?>" 
+    $loop = new WP_Query($args);
+    if ($loop->have_posts()):
+      while ($loop->have_posts()): $loop->the_post();
+        $video_link = get_field('video_link'); // use your ACF field name
+    ?>
+      <?php if ($video_link): ?>
+        
+        <iframe width="100%" height="400" src="<?php echo esc_url($video_link) ?>" 
       title="YouTube video player" frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       allowfullscreen>
     </iframe>
+      <?php endif; ?>
+    <?php endwhile; wp_reset_postdata(); ?>
+    <?php else: ?>
+      <p>No recent video yet.</p>
+    <?php endif; ?>
   </section>
-
+  
+  <?php endwhile; endif; ?>
   <?php
   get_footer();
   ?>
